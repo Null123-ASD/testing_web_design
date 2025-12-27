@@ -70,6 +70,37 @@ nextBtn.addEventListener("click", () => {
   updateCards();
 });
 
+// 預載所有 UI/UX 圖片到緩存中
+const preloadImages = () => {
+  const imageUrls = [
+    "image_ps/UIUX/2(1).jpg",
+    "image_ps/UIUX/1(1).jpg",
+    "image_ps/UIUX/40.jpg",
+    // ... 加入所有圖片路徑
+  ];
+  imageUrls.forEach(url => {
+    const img = new Image();
+    img.src = url;
+  });
+};
+window.addEventListener('load', preloadImages);
+
+function preloadCSSImages() {
+    const graphicImages = [
+        "image_ps/DB/14.jpg",
+        "image_ps/DB/10.jpg",
+        "image_ps/DB/37.jpg",
+        "image_ps/DB/18.jpg"
+    ];
+
+    graphicImages.forEach(url => {
+        const img = new Image();
+        img.src = url; // 這會觸發瀏覽器下載並緩存圖片
+    });
+}
+
+// 頁面主體加載完後立即執行預載
+window.addEventListener('DOMContentLoaded', preloadCSSImages);
 
 /* =========================
    Section Indicator State

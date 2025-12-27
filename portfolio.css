@@ -365,6 +365,30 @@ nav a.active {
   }
 }
 
+@media (max-width: 1450px) {
+  /* 增加 UI/UX 標題與展示區的間隔 */
+  .section-header h2 {
+    margin-bottom: 90px; /* 增加間隔，避免太擠 */
+    text-align: center;
+  }
+
+  /* UI/UX 按鈕優化：確保不擋住卡片 */
+  .uiux-showcase {
+    position: relative;
+    padding: 0 100px; /* 增加兩側內邊距，把按鈕往外推 */
+  }
+
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+
+  .nav-arrow.prev { left: -20px; } 
+  .nav-arrow.next { right: -20px; }
+}
+
 @media (max-width: 1400px) {
   .uiux-showcase {
     position: relative;
@@ -382,33 +406,7 @@ nav a.active {
   .nav-arrow.next { right: 0; }
 }
 
-@media (max-width: 1450px) {
-  .section-indicator {
-    display: none !important;
-  }
 
-  /* 增加 UI/UX 標題與展示區的間隔 */
-  .section-header h2 {
-    margin-bottom: 80px; /* 增加間隔，避免太擠 */
-    text-align: center;
-  }
-
-  /* UI/UX 按鈕優化：確保不擋住卡片 */
-  .uiux-showcase {
-    position: relative;
-    padding: 0 100px; /* 增加兩側內邊距，把按鈕往外推 */
-  }
-
-  .nav-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-  }
-
-  .nav-arrow.prev { left: -20px; } /* 往外掛一點 */
-  .nav-arrow.next { right: -20px; }
-}
 
 /* @media (max-width: 1200px) // 大畫面笔记本 */
 @media (max-width: 1200px) {
@@ -544,33 +542,48 @@ nav a.active {
   }
    
   /* UI/UX 標題再小一點 */
+  /* 1. UI/UX 標語縮小並增加間距 */
   .section-header h2 {
-    font-size: 24px;
-    margin-bottom: 30px;
+    font-size: 22px;
+    margin-bottom: 50px;
+    text-align: center;
   }
 
-  /* 調整 UI/UX 卡片顯示高度 */
-  .card-media {
+  /* 2. 解決按鈕遮擋：將按鈕移至卡片下方，或縮到極小靠邊 */
+  .uiux-showcase {
+    flex-direction: column; /* 讓按鈕與卡片垂直排列 */
+    gap: 20px;
+    padding: 0;
+  }
+
+  .uiux-cards {
+    order: 1; /* 卡片在最上面 */
+    width: 90%;
+  }
+
+  .uiux-card {
+    display: none;
     width: 100%;
-    aspect-ratio: 1 / 1.3;
-    margin-bottom: 15px;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center; /* 確保文字居中 */
   }
 
-  .card-meta {
-    width: 100%;
-    text-align: center; /* 確保文字在 meta 容器內置中 */
-  }
+  .uiux-card.active { display: flex; }
 
-  .card-meta h3 {
-    margin: 0;
-    font-size: 15px; /* 手機端字體稍微縮小 */
-  }
-
+  /* 3. 箭頭按鈕重新定位：放在卡片兩側底部，不重疊圖片 */
   .nav-arrow {
-    width: 40px;
-    height: 40px;
-    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: auto;
+    bottom: -60px; /* 移到卡片下方區域 */
+    transform: none;
+    width: 45px;
+    height: 45px;
+    background: #333;
   }
+
+  .nav-arrow.prev { left: 20%; }
+  .nav-arrow.next { right: 20%; }
 
   /* --- Graphic 修正 --- */
   .graphic-entry h2 {
@@ -586,4 +599,5 @@ nav a.active {
   .graphic-slice { height: 80%; } /* 平分高度 */
   .graphic-slice:nth-child(3) { display: none; } /* 再隱藏第 3 張，剩下 2 張 */
 
+  
 }
