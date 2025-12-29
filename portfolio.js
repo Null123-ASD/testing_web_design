@@ -76,7 +76,6 @@ const preloadImages = () => {
     "image_ps/UIUX/2(1).jpg",
     "image_ps/UIUX/1(1).jpg",
     "image_ps/UIUX/40.jpg",
-    // ... 加入所有圖片路徑
   ];
   imageUrls.forEach(url => {
     const img = new Image();

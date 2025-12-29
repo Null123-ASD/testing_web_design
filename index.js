@@ -2,7 +2,6 @@
 function showSection(sectionId) {
   const targetSection = document.getElementById(sectionId);
   
-  // 防錯處理：如果該頁面找不到這個 ID，就不執行（例如在 portfolio.html 誤點了這個函數）
   if (!targetSection) return;
 
   const sections = document.getElementsByClassName('section');
@@ -12,11 +11,10 @@ function showSection(sectionId) {
   
   targetSection.classList.add('active');
 
-  // 更新導航欄高亮
   const navLinks = document.querySelectorAll('nav a');
   navLinks.forEach(link => {
     link.classList.remove('active');
-    // 檢查 href 或 onclick 是否包含該 ID
+
     const href = link.getAttribute('href');
     const onclickAttr = link.getAttribute('onclick');
     if ((onclickAttr && onclickAttr.includes(`'${sectionId}'`)) || (href && href.includes(`#${sectionId}`))) {
@@ -25,16 +23,12 @@ function showSection(sectionId) {
   });
 }
 
-// *** 新增：處理從其他頁面（如 portfolio）跳轉過來的情況 ***
 window.addEventListener('DOMContentLoaded', () => {
-    // 獲取 URL 中的 hash (例如 #about)
     const hash = window.location.hash.replace('#', '');
     
     if (hash) {
-        // 如果有 hash，顯示對應區塊
         showSection(hash);
     } else {
-        // 如果沒有 hash，預設顯示 home
         showSection('home');
     }
 });
